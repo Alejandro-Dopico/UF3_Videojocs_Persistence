@@ -20,35 +20,21 @@ public class GameServicio {
     List<Game> games = new ArrayList<>();
     int countGames = 0;
     GameDAO gameDAO = new GameDAO();
-    
-    /*
-    public GameServicio(){
+          
+    public List<Game> getGames(){   
+        return gameDAO.findAllGames();
+    }  
+
+    public Game getGame(int id) {
+        Game product = null;
         try {
-            gameDAO.createGame("Mario Odyssey","Nintendo",49f,1996);
+            product = gameDAO.findGameById(id);
         } catch (Exception ex) {
             Logger.getLogger(GameServicio.class.getName()).log(Level.SEVERE, null, ex);
         }
-        countGames = 3;
-    }
-    */
-      
-    public List<Game> getGames(){   
-        return gameDAO.findAllGames();
-    }
-       
-
-    public Game getGame(int id) {
-        games = gameDAO.findAllGames();
-        Game product = null;
-        
-        for (int i = 0; i < games.size(); i++) {
-            if(games.get(i).getId() == id) {
-                product = games.get(i);
-            }
-        }
         return product;
     }
-    
+
     public void addGame(String name, String developer, float price, int year){        
         try {
             gameDAO.createGame(name, developer, price, year);
